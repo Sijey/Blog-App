@@ -2,10 +2,10 @@ import React, {useEffect} from 'react';
 import {Table, Alert, Button, Spinner} from "react-bootstrap";
 import {POSTS_TEXT} from "../../text";
 import {connect} from "react-redux";
-import {loadPosts} from "../../actions/posts";
-import {getPosts, getPostsLoadingError} from "../../selectors/posts";
+import {loadUsers} from "../../actions/users";
+import {getUsers, getUsersLoadingError} from "../../selectors/users";
 
-const Posts = ({posts, error, load}) => {
+const Users = ({users, error, load}) => {
   useEffect(() => {
     load();
   }, [load]);
@@ -17,20 +17,20 @@ const Posts = ({posts, error, load}) => {
         <Button variant="secondary" onClick={load}>{POSTS_TEXT.RETRY_LOADING}</Button>{' '}
       </Alert>
     );
-  } else if (posts) {
+  } else if (users) {
     return (
       <Table striped bordered hover variant="dark">
         <thead>
-          <tr>
-            <th>Name</th>
-            <th>Author</th>
-          </tr>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
         </thead>
         <tbody>
-        {posts.map(post => (
-          <tr key={post.id}>
-            <td>{post.title}</td>
-            <td>{post.userName}</td>
+        {users.map(user => (
+          <tr key={user.id}>
+            <td>{user.name}</td>
+            <td>{user.email}</td>
           </tr>))}
         </tbody>
       </Table>
@@ -43,8 +43,8 @@ const Posts = ({posts, error, load}) => {
 };
 
 export default connect(state => ({
-  posts: getPosts(state),
-  error: getPostsLoadingError(state)
+  users: getUsers(state),
+  error: getUsersLoadingError(state)
 }), dispatch => ({
-  load: () => dispatch(loadPosts())
-}))(Posts);
+  load: () => dispatch(loadUsers())
+}))(Users);

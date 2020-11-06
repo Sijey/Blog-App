@@ -1,4 +1,4 @@
-import {POST_ACTIONS} from "../actions/posts";
+import {USER_ACTIONS} from "../actions/users";
 
 const initialState = {
   list: null,
@@ -7,12 +7,12 @@ const initialState = {
 
 export function reducer(state = initialState, action) {
   switch (action.type) {
-    case POST_ACTIONS.POPULATE:
+    case USER_ACTIONS.POPULATE:
       return {
         ...state,
         list: action.payload
       };
-    case POST_ACTIONS.SET_LOADING_ERROR:
+    case USER_ACTIONS.SET_LOADING_ERROR:
       return {
         ...state,
         loadingError: action.payload

@@ -1,5 +1,6 @@
-const API = 'https://jsonplaceholder.typicode.com/';
+const API = 'http://localhost:5000/api/';
 
 export const ENDPOINTS = {
-  POSTS: `${API}todos`
+  POSTS: `${API}posts`,
+  USERS: `${API}users`
 };
